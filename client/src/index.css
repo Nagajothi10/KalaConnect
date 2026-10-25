@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display leading-tight;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.madder');
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Form fields ── */
+  .field-label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-md border border-ink/25 bg-white px-3 py-2.5 text-ink
+           placeholder:text-stone/50 focus:border-madder focus:outline-none focus:ring-1
+           focus:ring-madder/30 transition-colors;
+  }
+
+  .field-input-error {
+    @apply border-madder;
+  }
+
+  .field-error {
+    @apply mt-1 text-sm text-madder;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply rounded-md bg-madder px-6 py-2.5 font-semibold text-white transition-all
+           hover:bg-[#8d3123] hover:shadow-md active:scale-[0.98]
+           disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-secondary {
+    @apply rounded-md bg-teal px-6 py-2.5 font-semibold text-white transition-all
+           hover:bg-[#226659] hover:shadow-md active:scale-[0.98]
+           disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-quiet {
+    @apply rounded-md border border-ink/25 px-6 py-2.5 font-medium text-ink
+           transition-all hover:bg-ink/5 hover:border-ink/40 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 font-medium text-ink/70 transition-colors hover:text-madder;
+  }
+
+  .btn-danger {
+    @apply rounded-md bg-red-600 px-4 py-2 font-medium text-white transition-all
+           hover:bg-red-700 active:scale-[0.98];
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-xl border border-ink/10 bg-white shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .card-product {
+    @apply card overflow-hidden cursor-pointer;
+  }
+
+  /* ── Section headers ── */
+  .section-title {
+    @apply font-display text-3xl font-bold text-ink;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-green  { @apply badge bg-green-100 text-green-800; }
+  .badge-amber  { @apply badge bg-amber-100 text-amber-800; }
+  .badge-red    { @apply badge bg-red-100 text-red-800; }
+  .badge-blue   { @apply badge bg-blue-100 text-blue-800; }
+  .badge-purple { @apply badge bg-purple-100 text-purple-800; }
+
+  /* ── Quality score bar ── */
+  .quality-bar-fill {
+    @apply h-2 rounded-full transition-all duration-700;
+  }
+
+  /* ── Loom motif (hero / auth panels) ── */
+  .loom-field {
+    background-color: theme('colors.dark');
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(239, 237, 230, 0.07) 0 1px,
+        transparent 1px 14px
+      ),
+      radial-gradient(ellipse at 60% 40%, rgba(163, 61, 42, 0.25) 0%, transparent 60%);
+  }
+
+  .loom-hero {
+    background-color: theme('colors.dark');
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(239, 237, 230, 0.05) 0 1px,
+        transparent 1px 14px
+      ),
+      radial-gradient(ellipse at 30% 60%, rgba(163, 61, 42, 0.3) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(42, 127, 111, 0.2) 0%, transparent 45%);
+  }
+
+  /* ── Chat bubble ── */
+  .chat-bubble-user {
+    @apply rounded-2xl rounded-tr-sm bg-madder px-4 py-3 text-white text-sm max-w-xs ml-auto;
+  }
+
+  .chat-bubble-bot {
+    @apply rounded-2xl rounded-tl-sm bg-white border border-ink/10 px-4 py-3 text-ink text-sm max-w-xs;
+  }
+
+  /* ── Quality indicator colours ── */
+  .quality-excellent { color: theme('colors.teal'); }
+  .quality-good      { color: #6b7c3b; }
+  .quality-fair      { color: theme('colors.saffron'); }
+  .quality-poor      { color: theme('colors.madder'); }
+}
